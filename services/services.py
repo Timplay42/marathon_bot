@@ -14,11 +14,11 @@ from datetime import datetime, date
 
 class Services(metaclass=SingletonMeta):
     dict_time = {
-        '2024-08-12': {"upper": "12:00:00", 'hour': "12:00:10"},
-        '2024-08-13': {"upper": "15:08:00", 'hour': "15:09:00"},
-        '2024-08-14': {"upper": "15:08:00", 'hour': "15:09:00"},
-        '2024-08-15': {"upper": "15:08:00", 'hour': "15:09:00"},
-        '2024-08-16': {"upper": "15:08:00", 'hour': "15:09:00"},
+        '2024-08-19': {"upper": "18:20:00", 'hour': "18:30:00"},
+        '2024-08-20': {"upper": "15:08:00", 'hour': "15:09:00"},
+        '2024-08-21': {"upper": "15:08:00", 'hour': "15:09:00"},
+        '2024-08-22': {"upper": "15:08:00", 'hour': "15:09:00"},
+        '2024-08-23': {"upper": "15:08:00", 'hour': "15:09:00"},
     }
 
     @classmethod
@@ -119,7 +119,6 @@ class TimerScheduler(metaclass=SingletonMeta):
         specified_datetime = datetime.strptime(f'{key_f} {value_s}', '%Y-%m-%d %H:%M:%S')
         now = datetime.strptime(str(datetime.now().replace(microsecond=0)), '%Y-%m-%d %H:%M:%S')
         new = datetime.strptime(f'{key_f} {value_new}', '%Y-%m-%d %H:%M:%S')
-        print('-------------------')
         print(specified_datetime, now)
         return specified_datetime > now and new > now
     
@@ -133,7 +132,6 @@ class TimerScheduler(metaclass=SingletonMeta):
                     if value_s != dict_time_new[key_f][key_s]:
                         check_me = self.check_date(key_f, value_s, dict_time_new[key_f][key_s])
                         if check_me:
-                            print('-------------------------------')
                             print(key_f, key_s, value_s)
                             self.remove_tasks(key_f, value_s, key_s, dict_time_new[key_f][key_s])
                         else:
